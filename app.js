@@ -64,7 +64,7 @@ submitBtn.addEventListener("click", function () {
   // Buttons - click event
   buttonsDiv.addEventListener("click", (event) => {
     // generate random number
-    const randomNumber = Math.floor(Math.random() * 3) + 1;
+    const randomNumber = Math.floor(Math.random() * 10) + 1;
     console.log(`Random number is ${randomNumber}`);
 
     const isButton = event.target.nodeName === "BUTTON";
