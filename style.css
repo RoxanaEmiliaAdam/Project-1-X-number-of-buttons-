@@ -1,0 +1,15 @@
+.blue {
+  text-align: left;
+  font-size: 17px;
+  color: blue;
+}
+
+.special {
+  margin-top: 70px;
+  margin-right: 70px;
+}
+
+#message {
+  text-align: center;
+  margin-top: 70px;
+}
