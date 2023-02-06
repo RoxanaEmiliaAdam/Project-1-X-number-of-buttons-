@@ -1,8 +1,6 @@
 "use strict";
 
 // select elements
-const input = document.getElementById("input").value;
-console.log(input);
 
 const submitBtn = document.getElementById("submit");
 
@@ -10,7 +8,8 @@ const submitContainer = document.querySelector(".container");
 const buttonsContainer = document.querySelector(".buttonsDiv");
 
 let tries = document.querySelector(".triesNumber");
-tries.textContent = 3;
+let remainingTries = 3;
+tries.textContent = remainingTries;
 
 // create 'message' p
 const message = document.createElement("p");
@@ -27,7 +26,9 @@ submitBtn.addEventListener("click", function () {
 
   // generate buttons
 
-  for (let i = 0; i < 4; i++) {
+  const input = document.getElementById("user-input").value;
+
+  for (let i = 0; i < input; i++) {
     const button = document.createElement("button");
     button.textContent = `Button ${i + 1}`;
     button.id = i + 1;
@@ -39,30 +40,34 @@ submitBtn.addEventListener("click", function () {
 // Buttons - click event
 buttonsContainer.addEventListener("click", (event) => {
   // generate random number
-  const randomNumber = Math.floor(Math.random() * 4) + 1;
-  console.log(`Random number is ${randomNumber}`);
 
   const isButton = event.target.nodeName === "BUTTON";
   if (!isButton) {
     return;
   }
   console.dir(event.target.id);
+  const randomNumber = Math.floor(Math.random() * 4) + 1;
+  console.log(`Random number is ${randomNumber}`);
 
   const buttonID = Number(event.target.id);
 
   // when player wins
   if (randomNumber === buttonID) {
     message.textContent = "You won!";
+    const buttonsArr = document.querySelectorAll(".special");
+    buttonsArr.forEach((button) => (button.disabled = true));
   }
 
   // when guess is wrong
   if (randomNumber != buttonID) {
-    if (triesNumber > 1) {
+    if (remainingTries > 1) {
       message.textContent = "You lost!";
-      triesNumber--;
+      remainingTries--;
+      tries.textContent = remainingTries;
     } else {
       message.textContent = "Game over";
-      //triesNumber = 0;
+      remainingTries = 0;
+      tries.textContent = remainingTries;
     }
   }
 });
