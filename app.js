@@ -18,16 +18,13 @@ document.body.appendChild(message);
 
 // Submit - click event
 submitBtn.addEventListener("click", function () {
-  //console.log(`Input value is ${inputValue}`);
-
-  // check if inputValue is a finite,possitive numbr
-  //   if (!isFinite(input) || input < 1 || input > 10)
-  //     return alert("Inputs have to be positive, integer numbers(1-10)!");
-
-  // generate buttons
-
   const input = document.getElementById("user-input").value;
 
+  //check if inputValue is a finite,possitive numbr
+  if (!isFinite(input) || input < 1 || input > 10)
+    return alert("Inputs have to be positive, integer numbers(1-10)!");
+
+  // generate buttons
   for (let i = 0; i < input; i++) {
     const button = document.createElement("button");
     button.textContent = `Button ${i + 1}`;
